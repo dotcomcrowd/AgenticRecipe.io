@@ -1,0 +1,51 @@
+Build a full-stack web application called **"agenticrecipe.io"** that allows users to discover AI-generated agentic workflow templates, tutorials, or labs (referred to as "recipes"). The application must fulfill the following functional and visual requirements:
+
+
+🔹 **Core Functionality**:
+1. Present users with a dynamic **survey interface** to gather their automation goals and preferences (e.g., tasks they want to automate, tools they use, AI agents they prefer).
+2. Match user responses to a collection of agentic recipes using a filtering mechanism based on #attributes (tags like #personal-productivity, #sales-automation, #code-generation, etc.).
+3. Display **related labs grouped together** by function (e.g., productivity, devtools, content creation).
+4. Recipes must be stored and served in **JSON format**, with each entry including:
+   - `title`
+   - `description`
+   - `tags` (i.e., #attributes)
+   - `GitHub_url`
+   - `demo_link` (optional)
+   - `prerequisites`
+   - `toolstack` (e.g., LangChain + Pinecone)
+   - `thumbnail` (optional image preview)
+
+
+🔹 **Front-End Requirements**:
+- Use a modern front-end framework (React or Svelte preferred).
+- Create a clean, responsive UI with visual cards or panels that render each recipe nicely (title, description, tags, image, links).
+- Include a **filter/search panel** where users can see and adjust the mapped attributes (#tags).
+- Group related labs using **accordion sections** or **tabs**.
+
+
+🔹 **Back-End Requirements**:
+- A simple Node.js/Express backend or use Firebase/Firestore to host the recipe JSON data.
+- Endpoints to:
+   - GET recipes by tag or keyword
+   - POST survey responses (optional analytics storage)
+   - Recommend recipes using a tag-matching algorithm.
+
+
+🔹 **Bonus Features**:
+- Use GPT API to generate missing metadata for a new GitHub lab (e.g., auto-tagging, summary).
+- Allow users to **submit new recipes** with validation and GitHub repo detection.
+- Export selected recipes into a downloadable JSON or markdown list.
+
+
+🛠 Tech Stack Suggestions:
+- Frontend: React + Tailwind CSS
+- Backend: Node.js + Express or Firebase
+- Optional: GPT-4 API for NLP-based matching
+- Hosting: Replit, Vercel, or Netlify
+- Version Control: GitHub
+
+
+⚙️ Example user flow:
+1. User lands on homepage → starts survey → selects interests: "Automate content posting," "Use OpenAI & Zapier."
+2. System returns grouped results for content automation labs using Zapier + GPT, tagged as #content-automation, #zapier, #GPT.
+3. User sees visual cards with GitHub links, previews, and option to favorite/export.
