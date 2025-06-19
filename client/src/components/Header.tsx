@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Menu, Bot } from "lucide-react";
+import { Menu } from "lucide-react";
+import logoImage from "@assets/Agentic Recipe - Logo1_1750355118310.png";
 
 interface HeaderProps {
   onOpenSurvey: () => void;
@@ -12,10 +13,11 @@ export default function Header({ onOpenSurvey }: HeaderProps) {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                <Bot className="text-white" size={16} />
-              </div>
-              <span className="text-xl font-bold text-slate-800">AgenticRecipe.io</span>
+              <img 
+                src={logoImage} 
+                alt="Agentic Recipe" 
+                className="h-8 w-auto"
+              />
             </div>
           </div>
           
