@@ -29,10 +29,8 @@ const categories = [
 
 const difficulties = ["Beginner", "Intermediate", "Advanced"];
 
-const extendedSchema = insertRecipeSchema.extend({
-  demo_link: insertRecipeSchema.shape.demo_link.optional().or(z.literal("")),
-  thumbnail: insertRecipeSchema.shape.thumbnail.optional().or(z.literal(""))
-});
+// Use the base schema directly
+const formSchema = insertRecipeSchema;
 
 export default function SubmitRecipe() {
   const [tagInput, setTagInput] = useState("");
@@ -42,16 +40,16 @@ export default function SubmitRecipe() {
   const queryClient = useQueryClient();
 
   const form = useForm<InsertRecipe>({
-    resolver: zodResolver(extendedSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       description: "",
       tags: [],
       github_url: "",
-      demo_link: undefined,
+      demo_link: "",
       prerequisites: [],
       toolstack: [],
-      thumbnail: undefined,
+      thumbnail: "",
       difficulty: "Beginner",
       category: "",
       featured: false
@@ -228,7 +226,7 @@ export default function SubmitRecipe() {
                       <FormItem>
                         <FormLabel>Demo Link</FormLabel>
                         <FormControl>
-                          <Input placeholder="https://demo.example.com" {...field} />
+                          <Input placeholder="https://demo.example.com" {...field} value={field.value ?? ""} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -269,7 +267,7 @@ export default function SubmitRecipe() {
                       <FormItem>
                         <FormLabel>Thumbnail URL</FormLabel>
                         <FormControl>
-                          <Input placeholder="https://example.com/image.png" {...field} />
+                          <Input placeholder="https://example.com/image.png" {...field} value={field.value ?? ""} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -292,7 +290,7 @@ export default function SubmitRecipe() {
                     </Button>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {form.watch("tags").map((tag) => (
+                    {(form.watch("tags") || []).map((tag) => (
                       <Badge key={tag} variant="secondary" className="flex items-center gap-1">
                         {tag}
                         <X 
@@ -319,7 +317,7 @@ export default function SubmitRecipe() {
                     </Button>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {form.watch("prerequisites").map((prereq) => (
+                    {(form.watch("prerequisites") || []).map((prereq) => (
                       <Badge key={prereq} variant="outline" className="flex items-center gap-1">
                         {prereq}
                         <X 
@@ -346,7 +344,7 @@ export default function SubmitRecipe() {
                     </Button>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {form.watch("toolstack").map((tool) => (
+                    {(form.watch("toolstack") || []).map((tool) => (
                       <Badge key={tool} variant="default" className="flex items-center gap-1">
                         {tool}
                         <X 

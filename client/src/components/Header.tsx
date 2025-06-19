@@ -22,8 +22,8 @@ export default function Header({ onOpenSurvey }: HeaderProps) {
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-slate-600 hover:text-slate-900 font-medium">Discover</a>
-            <a href="#" className="text-slate-600 hover:text-slate-900 font-medium">Submit Recipe</a>
+            <a href="/" className="text-slate-600 hover:text-slate-900 font-medium">Discover</a>
+            <a href="/submit-recipe" className="text-slate-600 hover:text-slate-900 font-medium">Submit Recipe</a>
             <a href="#" className="text-slate-600 hover:text-slate-900 font-medium">Documentation</a>
           </nav>
 
