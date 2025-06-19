@@ -267,7 +267,13 @@ export default function SubmitRecipe() {
                       <FormItem>
                         <FormLabel>Thumbnail URL</FormLabel>
                         <FormControl>
-                          <Input placeholder="https://example.com/image.png" {...field} value={field.value ?? ""} />
+                          <Input 
+                            placeholder="https://example.com/image.png" 
+                            onChange={field.onChange}
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            value={field.value ?? ""} 
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
